@@ -53,17 +53,7 @@ begin
       trap(:CONT) { Window.redraw }
     rescue ArgumentError
     end
-    begin
-      loop do
-        Controller.current.command_loop(TOP_LEVEL_TAG)
-        Window.redisplay
-      end
-    rescue Exception => e
-      if !e.is_a?(SystemExit)
-        Buffer.dump_unsaved_buffers(CONFIG[:buffer_dump_dir])
-      end
-      raise
-    end
+    Reflex.start
   end
 ensure
   Controller.current.close

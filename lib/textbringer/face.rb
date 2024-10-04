@@ -1,4 +1,5 @@
-require "curses"
+#require "curses"
+require_relative "reflex-curses"
 
 module Textbringer
   class Face
